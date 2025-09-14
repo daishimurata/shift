@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>おひさま農園シフト管理API - Claude.ai対応テストページ</title>
+    <style>
+        body { font-family: 'Hiragino Sans', sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .header { text-align: center; color: #2c5530; margin-bottom: 30px; }
+        .api-test { background: #f8f9fa; padding: 15px; border-radius: 5px; margin: 10px 0; }
+        .button { background: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin: 5px; }
+        .button:hover { background: #218838; }
+        .result { background: #e9ecef; padding: 10px; border-radius: 5px; margin-top: 10px; white-space: pre-wrap; }
+        .success { background: #d4edda; border: 1px solid #c3e6cb; color: #155724; }
+        .error { background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; }
+        .staff-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 10px; margin: 20px 0; }
+        .staff-card { background: #fff3cd; padding: 10px; border-radius: 5px; border: 1px solid #ffeaa7; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌻 おひさま農園シフト管理API</h1>
+            <h2>Claude.ai対応テストページ</h2>
+            <p>Bot「日向」メッセージ送信テスト</p>
+        </div>
+
+        <div class="api-test">
+            <h3>🚀 Claude.ai直接アクセス用API</h3>
+            <p><strong>ベースURL:</strong> <span id="baseUrl">https://shift-lineworks-hvoel46lj-daishimuratas-projects.vercel.app</span></p>
+            
+            <h4>📊 システム情報確認</h4>
+            <button class="button" onclick="testSystemInfo()">システム情報を取得</button>
+            <div id="systemInfo" class="result"></div>
+            
+            <h4>📋 全スタッフ予定チェック</h4>
+            <button class="button" onclick="checkAllSchedules()">全員の予定をチェック</button>
+            <div id="scheduleCheck" class="result"></div>
+            
+            <h4>📱 テストメッセージ送信</h4>
+            <div>
+                <label>送信先: </label>
+                <select id="targetUser">
+                    <option value="pr.12187@ohisamafarm">村田太志（管理者）</option>
+                    <option value="oh.59001@ohisamafarm">木村捺々恵（生活支援員）</option>
+                    <option value="oh.47553@ohisamafarm">松本愛美（サービス管理責任者）</option>
+                </select>
+            </div>
+            <div style="margin: 10px 0;">
+                <label>メッセージ: </label>
+                <input type="text" id="customMessage" placeholder="テストメッセージを入力" style="width: 300px;">
+            </div>
+            <button class="button" onclick="sendTestMessage()">テストメッセージ送信</button>
+            <div id="messageResult" class="result"></div>
+            
+            <h4>📅 シフトリマインダー送信</h4>
+            <div>
+                <label>対象者: </label>
+                <select id="shiftTarget">
+                    <option value="oh.59001@ohisamafarm">木村捺々恵</option>
+                    <option value="oh.96030@ohisamafarm">本間愛梨</option>
+                    <option value="oh.81528@ohisamafarm">宇都宮りえ</option>
+                </select>
+            </div>
+            <button class="button" onclick="sendShiftReminder()">シフトリマインダー送信</button>
+            <div id="shiftResult" class="result"></div>
+            
+            <h4>🚗 送迎予定通知</h4>
+            <div>
+                <label>送迎スケジュール: </label>
+                <input type="text" id="transportSchedule" placeholder="9:00出発→17:00帰宅" style="width: 250px;">
+            </div>
+            <button class="button" onclick="sendTransportNotice()">送迎通知送信</button>
+            <div id="transportResult" class="result"></div>
+        </div>
+
+        <div class="staff-list">
+            <h3>👥 スタッフ一覧</h3>
+            <div class="staff-card"><strong>村田太志</strong><br>pr.12187@ohisamafarm<br>管理者</div>
+            <div class="staff-card"><strong>木村捺々恵</strong><br>oh.59001@ohisamafarm<br>生活支援員</div>
+            <div class="staff-card"><strong>松本愛美</strong><br>oh.47553@ohisamafarm<br>サービス管理責任者</div>
+            <div class="staff-card"><strong>小西瞳</strong><br>oh.19136@ohisamafarm<br>職業指導員</div>
+        </div>
+
+        <div class="api-test">
+            <h3>🔗 Claude.ai用URL</h3>
+            <p>以下のURLをClaude.aiに直接提供してください：</p>
+            
+            <h4>システム情報</h4>
+            <div class="result">
+                <span id="infoUrl">https://shift-lineworks-hvoel46lj-daishimuratas-projects.vercel.app/api/claude-direct?action=info</span>
+                <button onclick="copyToClipboard('infoUrl')" style="margin-left: 10px;">コピー</button>
+            </div>
+            
+            <h4>村田さんにテストメッセージ</h4>
+            <div class="result">
+                <span id="testUrl">https://shift-lineworks-hvoel46lj-daishimuratas-projects.vercel.app/api/claude-direct?action=send&target=pr.12187@ohisamafarm&message=Claude.aiからの直接テストです</span>
+                <button onclick="copyToClipboard('testUrl')" style="margin-left: 10px;">コピー</button>
+            </div>
+            
+            <h4>木村さんにシフトリマインダー</h4>
+            <div class="result">
+                <span id="shiftUrl">https://shift-lineworks-hvoel46lj-daishimuratas-projects.vercel.app/api/claude-direct?action=shift&target=oh.59001@ohisamafarm&name=木村捺々恵</span>
+                <button onclick="copyToClipboard('shiftUrl')" style="margin-left: 10px;">コピー</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const baseUrl = document.getElementById('baseUrl').textContent;
+        
+        async function testSystemInfo() {
+            const resultDiv = document.getElementById('systemInfo');
+            try {
+                const response = await fetch(`${baseUrl}/api/claude-direct?action=info`);
+                const data = await response.json();
+                resultDiv.className = 'result success';
+                resultDiv.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `エラー: ${error.message}`;
+            }
+        }
+        
+        async function checkAllSchedules() {
+            const resultDiv = document.getElementById('scheduleCheck');
+            try {
+                const response = await fetch(`${baseUrl}/api/claude-direct?action=check`);
+                const data = await response.json();
+                resultDiv.className = 'result success';
+                resultDiv.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `エラー: ${error.message}`;
+            }
+        }
+        
+        async function sendTestMessage() {
+            const target = document.getElementById('targetUser').value;
+            const message = document.getElementById('customMessage').value || 'テストメッセージです';
+            const resultDiv = document.getElementById('messageResult');
+            
+            try {
+                const url = `${baseUrl}/api/claude-direct?action=send&target=${target}&message=${encodeURIComponent(message)}`;
+                const response = await fetch(url);
+                const data = await response.json();
+                resultDiv.className = data.success ? 'result success' : 'result error';
+                resultDiv.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `エラー: ${error.message}`;
+            }
+        }
+        
+        async function sendShiftReminder() {
+            const target = document.getElementById('shiftTarget').value;
+            const name = document.getElementById('shiftTarget').selectedOptions[0].text;
+            const resultDiv = document.getElementById('shiftResult');
+            
+            try {
+                const url = `${baseUrl}/api/claude-direct?action=shift&target=${target}&name=${encodeURIComponent(name)}`;
+                const response = await fetch(url);
+                const data = await response.json();
+                resultDiv.className = data.success ? 'result success' : 'result error';
+                resultDiv.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `エラー: ${error.message}`;
+            }
+        }
+        
+        async function sendTransportNotice() {
+            const schedule = document.getElementById('transportSchedule').value || '9:00出発→17:00帰宅';
+            const resultDiv = document.getElementById('transportResult');
+            
+            try {
+                const url = `${baseUrl}/api/claude-direct?action=transport&target=pr.12187@ohisamafarm&schedule=${encodeURIComponent(schedule)}`;
+                const response = await fetch(url);
+                const data = await response.json();
+                resultDiv.className = data.success ? 'result success' : 'result error';
+                resultDiv.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `エラー: ${error.message}`;
+            }
+        }
+        
+        function copyToClipboard(elementId) {
+            const text = document.getElementById(elementId).textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('URLをクリップボードにコピーしました！');
+            });
+        }
+    </script>
+</body>
+</html>
+

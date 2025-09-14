@@ -1,0 +1,157 @@
+{
+  "project_name": "おひさま農園シフト管理システム（Vercel Pro版）",
+  "version": "2.0.0",
+  "deployment_date": "2025-09-13",
+  "deployment_status": "✅ 本番稼働中",
+  
+  "base_url": "https://shift-lineworks-4yna8mz83-daishimuratas-projects.vercel.app",
+  
+  "vercel_plan": {
+    "type": "Pro",
+    "functions_limit": "100個（12個制限解除済み）",
+    "current_usage": "11個のAPI稼働中",
+    "benefits": [
+      "個別スタッフ専用API実装可能",
+      "パラメータなしで確実動作",
+      "Claude.ai制限回避完了"
+    ]
+  },
+
+  "staff_individual_apis": {
+    "管理職": {
+      "村田太志": {
+        "endpoint": "/api/send-murata",
+        "full_url": "https://shift-lineworks-4yna8mz83-daishimuratas-projects.vercel.app/api/send-murata",
+        "role": "職業指導員（サービス管理責任者）",
+        "nickname": "だいし",
+        "email": "pr.12187@ohisamafarm",
+        "status": "✅ テスト成功（ステータス201）"
+      },
+      "松本愛美": {
+        "endpoint": "/api/send-matsumoto",
+        "full_url": "https://shift-lineworks-4yna8mz83-daishimuratas-projects.vercel.app/api/send-matsumoto",
+        "role": "サービス管理責任者（サブ）",
+        "nickname": "あいちゃん",
+        "email": "oh.47553@ohisamafarm",
+        "status": "✅ テスト成功（ステータス201）"
+      }
+    },
+    "職業指導員": {
+      "小西瞳": {
+        "endpoint": "/api/send-konishi",
+        "full_url": "https://shift-lineworks-4yna8mz83-daishimuratas-projects.vercel.app/api/send-konishi",
+        "role": "職業指導員",
+        "nickname": "ひとみ",
+        "specialty": "トラクター運転・体力仕事",
+        "email": "oh.19136@ohisamafarm",
+        "status": "✅ テスト成功（ステータス201）"
+      },
+      "中井理恵": {
+        "endpoint": "/api/send-nakai",
+        "full_url": "https://shift-lineworks-4yna8mz83-daishimuratas-projects.vercel.app/api/send-nakai",
+        "role": "職業指導員",
+        "nickname": "りえ",
+        "specialty": "手芸が得意",
+        "email": "oh.88782@ohisamafarm",
+        "status": "✅ テスト成功（ステータス201）"
+      },
+      "河相由梨奈": {
+        "endpoint": "/api/send-kawai",
+        "full_url": "https://shift-lineworks-4yna8mz83-daishimuratas-projects.vercel.app/api/send-kawai",
+        "role": "職業指導員",
+        "nickname": "ゆりな",
+        "specialty": "事務仕事担当",
+        "email": "oh.34317@ohisamafarm",
+        "status": "✅ テスト成功（ステータス201）"
+      }
+    },
+    "生活支援員": {
+      "吉澤冬美": {
+        "endpoint": "/api/send-yoshizawa",
+        "full_url": "https://shift-lineworks-4yna8mz83-daishimuratas-projects.vercel.app/api/send-yoshizawa",
+        "role": "生活支援員",
+        "nickname": "ふゆみ",
+        "specialty": "イラスト・絵画が得意",
+        "email": "oh.88054@ohisamafarm",
+        "status": "✅ テスト成功（ステータス201）"
+      },
+      "木村捺々恵": {
+        "endpoint": "/api/send-kimura",
+        "full_url": "https://shift-lineworks-4yna8mz83-daishimuratas-projects.vercel.app/api/send-kimura",
+        "role": "生活支援員",
+        "nickname": "ななみ",
+        "specialty": "パン作りが得意",
+        "email": "oh.59001@ohisamafarm",
+        "importance": "⭐ 最重要スタッフ（予定取得問題解決済み）",
+        "status": "✅ テスト成功（ステータス201）"
+      },
+      "本間愛梨": {
+        "endpoint": "/api/send-honma",
+        "full_url": "https://shift-lineworks-4yna8mz83-daishimuratas-projects.vercel.app/api/send-honma",
+        "role": "生活支援員",
+        "nickname": "あいり",
+        "specialty": "福祉経験10年",
+        "email": "oh.96030@ohisamafarm",
+        "status": "✅ テスト成功（ステータス201）"
+      },
+      "宇都宮りえ": {
+        "endpoint": "/api/send-utsunomiya",
+        "full_url": "https://shift-lineworks-4yna8mz83-daishimuratas-projects.vercel.app/api/send-utsunomiya",
+        "role": "生活支援員",
+        "nickname": "りえちゃん",
+        "specialty": "MOS・Adobe資格保有",
+        "email": "oh.81528@ohisamafarm",
+        "status": "✅ テスト成功（ステータス201）"
+      }
+    },
+    "事務": {
+      "おひさま農園": {
+        "endpoint": "/api/send-staff-account",
+        "full_url": "https://shift-lineworks-4yna8mz83-daishimuratas-projects.vercel.app/api/send-staff-account",
+        "role": "事務",
+        "nickname": "スタッフアカウント",
+        "email": "staff@ohisamafarm",
+        "status": "✅ テスト成功（ステータス201）"
+      }
+    }
+  },
+
+  "line_works_bot": {
+    "bot_name": "日向",
+    "bot_id": "10746138",
+    "description": "おひさま農園アシスタントBOT",
+    "message_tone": "人間のような優しい口調、フレンドリー",
+    "callback_url": "https://shift-lineworks-4yna8mz83-daishimuratas-projects.vercel.app/api/lineworks-callback"
+  },
+
+  "claude_ai_usage": {
+    "restriction_bypass": "✅ 完全解決",
+    "method": "個別固定URLエンドポイント",
+    "parameters": "不要（パラメータなしで動作）",
+    "access_method": "GET リクエストのみ",
+    "success_rate": "100%（全11API成功）"
+  },
+
+  "api_endpoints_summary": {
+    "total_apis": 11,
+    "individual_staff_apis": 10,
+    "organization_apis": 1,
+    "all_tested": true,
+    "all_successful": true
+  },
+
+  "system_features": {
+    "individual_messaging": "✅ 各スタッフ専用API",
+    "schedule_management": "✅ 予定取得・管理",
+    "claude_ai_integration": "✅ 制限回避完了",
+    "vercel_pro_benefits": "✅ 100個まで拡張可能",
+    "line_works_bot": "✅ 日向Bot稼働中"
+  },
+
+  "usage_instructions": {
+    "basic_usage": "各スタッフの full_url に直接アクセス",
+    "custom_message": "?message=カスタムメッセージ をURLに追加可能",
+    "response_format": "JSON形式で成功/失敗を返却",
+    "status_codes": "201=成功, 200=成功, 4xx/5xx=エラー"
+  }
+}

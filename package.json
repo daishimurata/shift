@@ -18,9 +18,11 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@upstash/redis": "^1.35.3",
     "axios": "^1.11.0",
     "dotenv": "^17.2.2",
-    "jsonwebtoken": "^9.0.2"
+    "jsonwebtoken": "^9.0.2",
+    "redis": "^5.8.2"
   },
   "devDependencies": {
     "vercel": "^47.0.4"
